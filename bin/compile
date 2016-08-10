@@ -110,6 +110,8 @@ export LD_LIBRARY_PATH=".:$BUILD_DIR/lib:/lib:/usr/lib:/usr/lib/x86_64-linux-gnu
 export LIBRARY_PATH="$BUILD_DIR/lib:/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
 
 #GSC-20160805
+vendordir=/app/vendor
+mkdir -p $vendordir
 
 echo "PEK77-PWD"
 pwd
@@ -165,21 +167,22 @@ make install
 echo "PEK77-gfortran"
 /home/vcap/app/vendor/gccF/bin/gfortran --version
 echo "=====1111111======"
+cd ..
+ls
 
 
-# patch gcc features.h file
-# see http://permalink.gmane.org/gmane.comp.gcc.help/40166
-#mkdir -p $vendordir/gcc-4/lib/gcc/x86_64-unknown-linux-gnu/4.9.3/include-fixed
-#cp /tmp/buildpacks/BlueMix-R-Buildpack/bin/features.h $vendordir/gcc-4/lib/gcc/x86_64-unknown-linux-gnu/4.9.3/include-fixed/features.h
 export LIBRARY_PATH="$BUILD_DIR/lib:/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:/home/vcap/app/vendor/gccF/lib64:/home/vcap/app/vendor/gccF/bin:/home/vcap/app/vendor/gccF/lib"
 export LD_LIBRARY_PATH="/home/vcap/app/vendor/gccF/lib:/home/vcap/app/vendor/gccF/lib64:/home/vcap/app/vendor/gccF/bin:$LD_LIBRARY_PATH"
 export PATH="/home/vcap/app/vendor/gccF/bin:/home/vcap/app/vendor/gccF/bin/gfortran:$PATH"
-#export LD_RUN_PATH="/home/vcap/app/vendor/gccF:$LD_LIBRARY_PATH:$LIBDIR"
-# https://www.gnu.org/software/libc/
-#glibc_version=2.7
-#download "http://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.gz" glibc_2.23.tar.gz
-#tar xzf /tmp/buildpacks/BlueMix-R-Buildpack/bin/glibc_2.23.tar.gz -C $vendordir
-cd $R_HOME/R-3.3.1/
+
+
+
+echo "R-3.3.1"
+wget https://cran.r-project.org/src/base/R-3/R-3.3.1.tar.gz
+tar R-3.3.1.tar.gz
+mkdir R
+ls
+cd R-3.3.1
 ./configure --without-pic --disable-shared
 cp -R $VENDOR_DIR/R /home/vcap/app/vendor
 
