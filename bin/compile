@@ -120,9 +120,7 @@ echo "PEK77-PWD"
 pwd
 cd app
 cd vendor
-which gcc
-mkdir "gcc"
-#yum -y install gcc gcc-c++ kernel-devel
+
 
 echo "PEK77-gmp-6.1.1"
 wget "https://gmplib.org/download/gmp/gmp-6.1.1.tar.bz2"
@@ -161,8 +159,6 @@ export LD_LIBRARY_PATH="/home/vcap/app/vendor/gcc:$LD_LIBRARY_PATH"
 echo "PEK77-GCC"
 wget "https://ftp.gnu.org/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz" -O "gcc-4.9.4.tar.gz"
 tar zxf gcc-4.9.4.tar.gz
-mkdir "gccF"
-ls
 cd gcc-4.9.4
 ./configure --prefix=/home/vcap/app/vendor/gccF --disable-shared --disable-bootstrap --disable-libstdcxx-pch --enable-languages=fortran --enable-libgomp --enable-lto --enable-threads=posix --enable-tls --with-gmp=/home/vcap/app/vendor/gcc  --with-mpfr=/home/vcap/app/vendor/gcc --with-mpc=/home/vcap/app/vendor/gcc --with-fpmath=sse --disable-multilib
 make -j16
@@ -182,21 +178,23 @@ export PATH="/home/vcap/app/vendor/gccF/bin:/home/vcap/app/vendor/gccF/bin/gfort
 
 echo "R-3.3.1"
 wget https://cran.r-project.org/src/base/R-3/R-3.3.1.tar.gz
-tar R-3.3.1.tar.gz
-mkdir R
-ls
+tar zxf R-3.3.1.tar.gz
 cd R-3.3.1
-./configure --without-pic --disable-shared
-cp -R $VENDOR_DIR/R /home/vcap/app/vendor
+./configure --prefix=/home/vcap/app/vender/R --with-readline=yes --with-libpng=yes --with-x=no
+make -j16
+make install
+echo "R-3.3.1 installed"
+echo "-------------------"
+cd /home/vcap/app/vender/R
+ls
+ 
+
 
 echo "Stuff copied" | indent
-# find /app/vendor/ type -d -print0 | xargs -0 ls -ld
-# find /app/vendor/R/ type -d -print0 | xargs -0 ls -ld
-# sleep 15
+
 
 # R needs to know where gfortran and glibc header files are
-# export LDFLAGS="-L/app/vendor/gcc/lib64/"
-# export CPPFLAGS="-I/app/vendor/glibc/string/ -I/app/vendor/glibc/time -I/usr/include/x86_64-linux-gnu/sys -I/usr/include/x86_64-linux-gnu/gnu"
+
 export R_HOME="/home/vcap/app/vendor/R:$R_HOME"
 export R_INCLUDE="$R_HOME/include:$BUILD_DIR/include"
 export LD_LIBRARY_PATH="$R_HOME/lib:$LD_LIBRARY_PATH"
@@ -210,7 +208,7 @@ echo "R_INCLUDE =$R_INCLUDE"| indent
 echo "LIBRARY_PATH =$LIBRARY_PATH"| indent
 
 
-
+R --version
 export CPATH=$R_INCLUDE:/usr/lib/x86_64-linux-gnu
 
 echo "CPATH = $CPATH"| indent
