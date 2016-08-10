@@ -180,8 +180,11 @@ echo "R-3.3.1"
 wget https://cran.r-project.org/src/base/R-3/R-3.3.1.tar.gz
 tar zxf R-3.3.1.tar.gz
 cd R-3.3.1
+echo "========= ./configure for R =========="
 ./configure --without-pic --disable-shared --prefix=/home/vcap/app/vender/R --with-readline=yes --with-libpng=yes --with-x=no
+echo "========= make for R =========="
 make -j16
+echo "========= make install for R =========="
 make install
 echo "R-3.3.1 installed"
 echo "-------------------"
