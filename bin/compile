@@ -110,8 +110,11 @@ export LD_LIBRARY_PATH=".:$BUILD_DIR/lib:/lib:/usr/lib:/usr/lib/x86_64-linux-gnu
 export LIBRARY_PATH="$BUILD_DIR/lib:/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
 
 #GSC-20160805
+
+cd ~
 vendordir=/app/vendor
 mkdir -p $vendordir
+
 
 echo "PEK77-PWD"
 pwd
