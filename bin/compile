@@ -207,7 +207,9 @@ echo "R_INCLUDE =$R_INCLUDE"| indent
 
 echo "LIBRARY_PATH =$LIBRARY_PATH"| indent
 
-
+echo "===== Full path run ====="
+/home/vcap/app/vendor/R R --version
+echo "===== Raletive path run ======"
 R --version
 export CPATH=$R_INCLUDE:/usr/lib/x86_64-linux-gnu
 
