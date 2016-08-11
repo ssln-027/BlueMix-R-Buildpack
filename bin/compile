@@ -66,6 +66,7 @@ export R_HOME = "/home/vcap/app/R/bin/"
 export PATH="/home/vcap/app/R/bin/:/home/vcap/app/R/bin/R:$PATH"
 export LIBRARY_PATH="/home/vcap/app/R/lib:$LIBRARY_PATH"
 export LD_LIBRARY_PATH="/home/vcap/app/R/lib:$LD_LIBRARY_PATH"
+echo "=========== Display R version =========="
 R --version
 
 echo "=========== Full path running =========="
