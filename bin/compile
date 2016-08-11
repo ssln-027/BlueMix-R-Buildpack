@@ -70,7 +70,7 @@ echo "=========== Display R version =========="
 R --version
 
 echo "=========== Full path running =========="
-/home/vcap/app/R/bin/ R CMD BATCH /tmp/buildpacks/BlueMix-R-Buildpack/bin/init.r /tmp/buildpacks/BlueMix-R-Buildpack/bin/initF.rout
+/home/vcap/app/R/bin/R CMD BATCH /tmp/buildpacks/BlueMix-R-Buildpack/bin/init.r /tmp/buildpacks/BlueMix-R-Buildpack/bin/initF.rout
 cat /tmp/buildpacks/BlueMix-R-Buildpack/bin/initF.rout
 echo "=========== Raletive path running ==========="
 R CMD BATCH /tmp/buildpacks/BlueMix-R-Buildpack/bin/init.r /tmp/buildpacks/BlueMix-R-Buildpack/bin/initR.rout
