@@ -62,7 +62,7 @@ make -j16
 make install
 cd ..
 echo "PEK77-FINISH"
-export R_HOME = "/home/vcap/app/R/bin/"
+export R_HOME = "/home/vcap/app/R"
 export PATH="/home/vcap/app/R/bin/:/home/vcap/app/R/bin/R:$PATH"
 export LIBRARY_PATH="/home/vcap/app/R/lib:$LIBRARY_PATH"
 export LD_LIBRARY_PATH="/home/vcap/app/R/lib:$LD_LIBRARY_PATH"
@@ -75,4 +75,3 @@ cat /tmp/buildpacks/BlueMix-R-Buildpack/bin/initF.rout
 echo "=========== Raletive path running ==========="
 R CMD BATCH /tmp/buildpacks/BlueMix-R-Buildpack/bin/init.r /tmp/buildpacks/BlueMix-R-Buildpack/bin/initR.rout
 cat /tmp/buildpacks/BlueMix-R-Buildpack/bin/initR.rout
-
